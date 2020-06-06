@@ -1,0 +1,5 @@
+dividedBy
+same
+notRelated
+divides
+composite
