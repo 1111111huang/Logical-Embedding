@@ -47,6 +47,9 @@ class Neural_LP_Learner(nn.Module):
         self.matrix_kb = matrix_kb  # matrix: (num_relation, num_entity, num_entity)
         self.softmax=torch.nn.Softmax(dim=-1)
         self.linear=torch.nn.Linear(self.num_relation,1)
+        dim=self.num_step*self.num_entity*self.num_entity+self.num_step*self.num_relation
+        self.linear1=torch.nn.Linear(dim,int(np.sqrt(dim)))
+        self.linear2=torch.nn.Linear(int(np.sqrt(dim)),1)
 
     def forward(self, x):  # x: {relation, head, tail} in one-hot encoding
         batch_size = x.shape[0]
@@ -56,6 +59,7 @@ class Neural_LP_Learner(nn.Module):
         hidden_states, cell_layers=self.LSTM_layer(input)
         hidden_states = self.softmax(hidden_states)
         hidden_states.retain_grad()
+        mat_list=[]
         for i in range(batch_size):
             memory[0][i] = x[i, self.num_relation:self.num_relation+self.num_entity]  # vx=[0,0,...,1,...,0].T
 
@@ -63,8 +67,8 @@ class Neural_LP_Learner(nn.Module):
             temp_mat = torch.matmul(self.matrix_kb.T, self.softmax(hidden_states[i]).T).T  # matrix * attention: (
             # batch, num_entity, num_entity)
             temp_mem_att=[torch.zeros(i+1) for _ in range(batch_size)]
-
             prev_weighted_memory = torch.zeros((batch_size, self.num_entity))
+            #mat_list+=[temp_mat]
             for j in range(batch_size):
                 for k in range(i+1):
                     temp_mem_att[j][k]=torch.matmul(hidden_states[k][j],hidden_states[i][j])
@@ -72,13 +76,17 @@ class Neural_LP_Learner(nn.Module):
                 for k in range(i+1):
                     prev_weighted_memory[j]+=temp_mem_att[j][k]*memory[k][j]
 
-            # weighted previous memory: (num_entity, batch)
+            #weighted previous memory: (num_entity, batch)
             memory[i+1] = torch.cat(
                 tuple(torch.matmul(temp_mat[j], prev_weighted_memory[j, :]).unsqueeze(0) for j in range(batch_size)))
         self.mem_att=temp_mem_att
         self.op_att=self.softmax(hidden_states[-1])
-        score = -torch.cat(tuple(torch.matmul(memory[-1][i].unsqueeze(0), x[i][self.num_relation+self.num_entity:self.num_relation+self.num_entity*2].unsqueeze(1)) for i in range(batch_size)))
+        #mat_tensor=torch.cat(tuple(mat_list)).reshape((batch_size,-1))
+        #hidden_states=hidden_states.reshape((batch_size,-1))
+        #temp=torch.cat((mat_tensor.T,hidden_states.T)).T
+        score = torch.cat(tuple(torch.matmul(memory[-1][i].unsqueeze(0), x[i][self.num_relation+self.num_entity:self.num_relation+self.num_entity*2].unsqueeze(1)) for i in range(batch_size)))
         score.retain_grad()
-        score = torch.sigmoid(score)
+        score = torch.tanh(score)
+        #score = torch.sigmoid(self.linear2(torch.relu(self.linear1(temp))))
             #score: (batch)
         return score

@@ -46,7 +46,7 @@ def main():
     parser.add_argument('--print_per_batch', default=3, type=int)
     parser.add_argument('--max_epoch', default=100, type=int)
     parser.add_argument('--min_epoch', default=5, type=int)
-    parser.add_argument('--learning_rate', default=0.01, type=float)
+    parser.add_argument('--learning_rate', default=0.1, type=float)
     parser.add_argument('--no_norm', default=False, action="store_true")
     parser.add_argument('--thr', default=1e-20, type=float)
     parser.add_argument('--dropout', default=0., type=float)

@@ -1,0 +1,99 @@
+0.399,1,"dividedBy(C,A)<--inv_divides(B,A),dividedBy(C,B)",Correct
+,,,
+0.139,0.348,"dividedBy(B,A)<--dividedBy(B,A)",Correct
+,,,
+0.137,0.344,"dividedBy(C,A)<--dividedBy(B,A),dividedBy(C,B)",Correct
+,,,
+0.137,0.344,"dividedBy(C,A)<--inv_divides(B,A),inv_divides(C,B)",Correct
+,,,
+0.06,0.151,"dividedBy(B,A)<--inv_divides(B,A)",Correct
+,,,
+0.048,0.12,"dividedBy(B,A)<--inv_divides(B,A)",Correct
+,,,
+0.047,0.118,"dividedBy(C,A)<--dividedBy(B,A),inv_divides(C,B)",Correct
+,,,
+0.021,0.052,"dividedBy(B,A)<--dividedBy(B,A)",Not useful
+,,,
+0.012,0.031,"dividedBy(B,A)<--equal(B,A)",Not useful
+,,,
+0.387,1,"divides(B,A)<--divides(B,A)",Not useful
+,,,
+0.384,0.992,"divides(C,A)<--divides(B,A),divides(C,B)",Correct
+,,,
+0.116,0.299,"divides(B,A)<--divides(B,A)",Not useful
+,,,
+0.112,0.29,"divides(B,A)<--equal(B,A)",Not useful
+,,,
+0.292,1,"notRelated(C,A)<--inv_notRelated(B,A),inv_notRelated(C,B)",Incorrect
+,,,
+0.216,0.74,"notRelated(C,A)<--notRelated(B,A),inv_notRelated(C,B)",Incorrect
+,,,
+0.139,0.478,"notRelated(C,A)<--inv_notRelated(B,A),notRelated(C,B)",Incorrect
+,,,
+0.103,0.353,"notRelated(C,A)<--notRelated(B,A),notRelated(C,B)",Incorrect
+,,,
+0.064,0.22,"notRelated(C,A)<--inv_divides(B,A),inv_notRelated(C,B)",Incorrect
+,,,
+0.051,0.176,"notRelated(C,A)<--dividedBy(B,A),inv_notRelated(C,B)",Incorrect
+,,,
+0.035,0.12,"notRelated(B,A)<--inv_notRelated(B,A)",Not useful
+,,,
+0.031,0.105,"notRelated(C,A)<--inv_divides(B,A),notRelated(C,B)",Incorrect
+,,,
+0.025,0.084,"notRelated(C,A)<--dividedBy(B,A),notRelated(C,B)",Incorrect
+,,,
+0.017,0.057,"notRelated(B,A)<--notRelated(B,A)",Not useful
+,,,
+0.22,1,"inv_dividedBy(C,A)<--inv_dividedBy(B,A),inv_dividedBy(C,B)",Correct
+,,,
+0.216,0.98,"inv_dividedBy(C,A)<--divides(B,A),inv_dividedBy(C,B)",Correct
+,,,
+0.181,0.824,"inv_dividedBy(B,A)<--inv_dividedBy(B,A)",Not useful
+,,,
+0.178,0.808,"inv_dividedBy(B,A)<--divides(B,A)",Correct
+,,,
+0.09,0.409,"inv_dividedBy(B,A)<--inv_dividedBy(B,A)",Not useful
+,,,
+0.064,0.29,"inv_dividedBy(B,A)<--equal(B,A)",Not useful
+,,,
+0.021,0.096,"inv_dividedBy(C,A)<--inv_dividedBy(B,A),divides(C,B)",Correct
+,,,
+0.021,0.095,"inv_dividedBy(C,A)<--divides(B,A),divides(C,B)",Correct
+,,,
+0.276,1,"inv_divides(C,A)<--inv_divides(B,A),dividedBy(C,B)",Correct
+,,,
+0.252,0.911,"inv_divides(C,A)<--inv_divides(B,A),inv_divides(C,B)",Correct
+,,,
+0.128,0.464,"inv_divides(B,A)<--inv_divides(B,A)",Not useful
+,,,
+0.094,0.341,"inv_divides(B,A)<--dividedBy(B,A)",Correct
+,,,
+0.086,0.31,"inv_divides(B,A)<--inv_divides(B,A)",Not useful
+,,,
+0.055,0.2,"inv_divides(C,A)<--dividedBy(B,A),dividedBy(C,B)",Correct
+,,,
+0.05,0.183,"inv_divides(C,A)<--dividedBy(B,A),inv_divides(C,B)",Correct
+,,,
+0.032,0.116,"inv_divides(B,A)<--equal(B,A)",Not useful
+,,,
+0.026,0.093,"inv_divides(B,A)<--dividedBy(B,A)",
+,,,
+0.207,1,"inv_notRelated(C,A)<--notRelated(B,A),notRelated(C,B)",
+,,,
+0.206,0.995,"inv_notRelated(C,A)<--notRelated(B,A),inv_notRelated(C,B)",
+,,,
+0.142,0.687,"inv_notRelated(C,A)<--inv_notRelated(B,A),notRelated(C,B)",
+,,,
+0.141,0.683,"inv_notRelated(C,A)<--inv_notRelated(B,A),inv_notRelated(C,B)",
+,,,
+0.062,0.3,"inv_notRelated(C,A)<--dividedBy(B,A),notRelated(C,B)",
+,,,
+0.062,0.298,"inv_notRelated(C,A)<--dividedBy(B,A),inv_notRelated(C,B)",
+,,,
+0.053,0.256,"inv_notRelated(C,A)<--inv_divides(B,A),notRelated(C,B)",
+,,,
+0.053,0.254,"inv_notRelated(C,A)<--inv_divides(B,A),inv_notRelated(C,B)",
+,,,
+0.021,0.101,"inv_notRelated(B,A)<--notRelated(B,A)",
+,,,
+0.021,0.1,"inv_notRelated(B,A)<--inv_notRelated(B,A)",Not useful

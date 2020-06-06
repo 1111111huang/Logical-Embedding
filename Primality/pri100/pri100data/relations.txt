@@ -1,0 +1,4 @@
+divides
+dividedBy
+prime
+notRelated

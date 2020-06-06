@@ -131,6 +131,36 @@ class DivisibilityOrder(PartialOrderDataset):
         self.label = label
         print("initialized")
 
+class DivisibilityOrderWithNegative(PartialOrderDataset):
+    def __init__(self, low, upp, n, r, seed):
+        random.seed(seed)
+        label = [i for i in ['divides', 'dividedBy', 'notRelated']] * n
+        input = []
+        random.shuffle(label)
+
+        if r == 2:
+            for l in label:
+                a = random.randint(low, upp)
+                b = random.randint(low, upp)
+                while not (((l == 'notRelated') and (a % b == 0)) or ((l == 'divide') and (a % b != 0))):
+                    a = random.randint(low, upp)
+                    b = random.randint(low, upp)
+                input += [[a, b]]
+        if r == 3:
+            for l in label:
+                a = random.randint(low, upp)
+                b = random.randint(low, upp)
+                count = 0
+                while not (((l == 'dividedBy') and (a % b == 0)) or ((l == 'divides') and (b % a == 0)) or (
+                        (l == 'notRelated') and (b % a != 0) and (a % b != 0))):
+                    a = random.randint(low, upp)
+                    b = random.randint(low, upp)
+                    count += 1
+                # print(count)
+                input += [[a, b]]
+        self.input = input
+        self.label = label
+        print("initialized")
 
 class Prime(DivisibilityOrder):
     def __init__(self, low, upp, n, r, seed):
@@ -331,6 +361,8 @@ class Data(object):
             head = int(temp[1])-self.num_relation
             tail = int(temp[2])-self.num_relation-self.num_entity
             matrix_db[rel, head, tail] = 1
+        matrix_db=torch.Tensor(matrix_db)
+        matrix_db=(matrix_db.T*1/torch.sum(torch.sum(matrix_db,1),1)).T
         return torch.Tensor(matrix_db)
 
     def _augment_with_reverse(self, triplets):
